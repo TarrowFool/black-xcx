@@ -1,0 +1,136 @@
+<template>
+  <view>
+    <view class="girl_wrapper" wx:for = "{{grils}}">
+      <view  data-url="{{item.url}}" bindtap = "onItemClick">
+        <image class= "image" mode="aspectFill" src="{{item.url}}"/>
+        <view class="title">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+import system from '../../static/utils/system'
+var A_gank = system.A_gank
+export default {
+  config: {
+    navigationBarTitleText: '妹子图'
+  },
+  data: {
+    grils: [],
+    hidden: false,
+    loading: false,
+    plain: false
+  },
+  onLoad () {
+    console.log('onLoad')
+    var that = this
+    requestData(that, mCurrentPage + 1);
+  },
+  onReachBottom () {
+    console.log('onLoad')
+    var that = this
+    that.setData({
+      hidden: false,
+    });
+    requestData(that, mCurrentPage + 1);
+  },
+}
+
+var mUrl = [];
+var mDesc = [];
+var mWho = [];
+var mTimes = [];
+var mTitles = [];
+
+var mCurrentPage = 0;
+function requestData(that, targetPage) {
+  wx.showToast({
+    title: '加载中',
+    icon: 'loading'
+  });
+  wx.request({
+    url: A_gank+"data/福利/10/"+targetPage,
+    header: {
+      "Content-Type": "application/json"
+    },
+    success: function (res) {
+      console.log(res)
+      if (res == null ||
+        res.data == null ||
+        res.data.results == null ||
+        res.data.results.length <= 0) {
+
+        console.error("god bless you...");
+        return;
+      }
+
+
+      for (var i = 0; i < res.data.results.length; i++)
+        bindData(res.data.results[i]);
+
+      //将获得的各种数据写入itemList，用于setData
+      var itemList = [];
+      for (var i = 0; i < mUrl.length; i++)
+        itemList.push({ url: mUrl[i], desc: mDesc[i], who: mWho[i], time: mTimes[i], title: mTitles[i] });
+
+      that.setData({
+        grils: itemList,
+        hidden: true,
+        // loadmorehidden:false,
+      });
+
+      mCurrentPage = targetPage;
+
+      wx.hideToast();
+    }
+  });
+}
+
+/**
+ * 绑定接口中返回的数据
+ * @param itemData Gank.io返回的content;
+ */
+function bindData(itemData) {
+
+  var url = itemData.url.replace("//ww", "//ws");
+  var desc = itemData.desc;
+  var who = itemData.who;
+  var times = itemData.publishedAt.split("T")[0];
+
+  mUrl.push(url);
+  mDesc.push(desc);
+  mWho.push(who);
+  mTimes.push(times);
+  mTitles.push("publish by：" + "@" + who + " —— " + times);
+}
+</script>
+
+<style lang="less">
+.girl_wrapper {
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 1px #cccccc;
+    margin: 8px;
+    position: relative;
+}
+
+.loadmore {
+    border: 0px solid #ffffff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 1px #cccccc;
+    margin: 8px;
+}
+
+.image{
+  width:100%;
+  height:240px; 
+}
+
+.title {
+    padding: 14px;
+    font-size: 14px;
+}
+</style>

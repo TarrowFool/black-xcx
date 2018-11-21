@@ -1,0 +1,141 @@
+<template>
+  <view>
+    <view class="map_container">
+      <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" controls="{{controls}}" bindcontroltap="translateMarker" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location class='map'>
+        <!-- <cover-view class="center_view">
+          <cover-image class="center" src="../../resource/img/place.png"></cover-image>
+        </cover-view> -->
+      </map>
+    </view>
+  </view>
+</template>
+
+<script>
+var amapFile = require('../../libs/amap-wx.js');
+export default {
+  config: {
+    navigationBarTitleText: '高德小程序API'
+  },
+  data: {
+    biaoji: "../../resource/img/place.png",
+    longitude: "113.324520",
+    latitude: "23.099994",
+    markers: [],
+    controls: [{
+      id: 0,
+      iconPath: '/resource/img/dingwei.png',
+      position: {
+        left: 10,
+        top: 400,
+        width: 50,
+        height: 50
+      },
+      clickable: true
+    }]
+  },
+  onLoad () {
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var latitude = parseFloat(res.latitude)
+        var longitude = parseFloat(res.longitude)
+        that.setData({
+          latitude: latitude,
+          longitude: longitude,
+        })
+      }
+    })
+
+    var that = this;
+    var myAmapFun = new amapFile.AMapWX({key:'7d81c77cc2bb090a22a6ddab7ee8a590'});
+    myAmapFun.getPoiAround({
+      success: function(data){
+        //成功回调
+        console.log(data)
+        var markes = [];
+        if (data.markers) {
+          for (var i = 0; i < data.markers.length; i++) {
+            markes[i] = new Object()
+
+            markes[i].latitude = data.markers[i].latitude
+            markes[i].longitude = data.markers[i].longitude
+            markes[i].width = 25
+            markes[i].height = 25
+            markes[i].iconPath = that.data.biaoji
+            markes[i].callout = {
+              display: "BYCLICK",
+              borderRadius: 2,
+              content: data.markers[i].name,
+              textAlign: "center",
+              bgColor: "#36c9a3",
+              padding: 5,
+              color: "#fff"
+            }
+          }
+          that.setData({
+            markers: markes,
+          })
+
+          console.log(that.data.markers)
+        }
+      },
+      fail: function(info){
+        //失败回调
+        console.log(info)
+      }
+    })
+  },
+  location: function () {
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.openLocation({
+          latitude: latitude,
+          longitude: longitude,
+          scale: 28,
+          name: "当前位置"
+        })
+      }
+    })
+  },
+  translateMarker (e){
+    var that = this
+    this.mapCtx.moveToLocation()
+  },
+  onReady () {
+    this.mapCtx = wx.createMapContext('map')
+  },
+}
+</script>
+
+<style lang="less">
+.map_container{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .map{
+    width: 100vw;
+    height: 100vh;
+  }
+  .center_view{
+    position: relative;
+    top: 50vh;
+    left: 50vw;
+    width: 60rpx;
+    height: 60rpx;
+    margin: -30rpx 0 0 -30rpx;
+  }
+  .center{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

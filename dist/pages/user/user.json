@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ui-blur": "../../packages/touchui-wx-components/ui-blur/dist/index",
+    "ui-tags": "../../packages/touchui-wx-components/ui-tags/dist/index"
+  },
+  "navigationBarTitleText": "Touch-UI",
+  "backgroundColor": "#F4F4F4",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
+}

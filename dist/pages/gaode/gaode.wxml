@@ -1,0 +1,10 @@
+<view>
+  <view class="map_container">
+    <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" controls="{{controls}}" bindcontroltap="translateMarker" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location class="map">
+      <!-- <cover-view class="center_view">
+          <cover-image class="center" src="../../resource/img/place.png"></cover-image>
+        </cover-view> -->
+    </map>
+  </view>
+</view>

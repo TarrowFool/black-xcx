@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ui-nav-bar": "../../packages/touchui-wx-components/ui-nav-bar/dist/index",
+    "ui-segment": "../../packages/touchui-wx-components/ui-segment/dist/index",
+    "ui-segment-item": "../../packages/touchui-wx-components/ui-segment-item/dist/index"
+  },
+  "navigationBarTitleText": "登录",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black"
+}

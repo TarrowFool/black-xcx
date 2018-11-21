@@ -1,0 +1,26 @@
+@import './reset';
+@import './row-list';
+@import './row';
+@import './col';
+@import './icon';
+
+
+.padvalue(@arg1:10rpx,@arg2:10rpx,@arg3:10rpx,@arg4:10rpx){
+    padding: @arguments; 
+}
+
+
+.column-content{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    line-height: 100px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+.pad10{
+    .padvalue(0,10,0,10);
+}
+.heightauto{
+    height: auto;
+}

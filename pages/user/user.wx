@@ -1,0 +1,215 @@
+<template>
+  <view>
+    <view class="content_wrap">
+      <ui-blur height="300" url="{{ url }}">
+        <view class="top_content">
+          <view>
+           <image src="{{ url }}" mode='aspectFill' style="width:60px;height:60px" />
+          </view>
+          <view class="name">
+            TOUCH UI <ui-icon type="write" size="16" color="#fff"></ui-icon>
+          </view>
+          <view class="card">
+            <view>
+              美好生活PASS卡
+            </view>
+          </view>
+        </view>
+      </ui-blur>
+      <view class="tag_list">
+        <ui-tags data="{{ starList }}" fixed-width ="true" bindchange="multipleTap" item-width="75"></ui-tags>
+      </view>
+      
+      <view class="user_list">
+        <ui-row-list border-indent>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="like" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  个人中心
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="crown" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  Wi-Fi
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="locationfill" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  蓝牙
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="footprint" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  蜂窝移动网络
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="recharge" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  个人热点
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="mark" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  VPN
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+          <ui-row height="50">
+              <ui-col width="40" vertical-align="middle" align="center">
+                  <ui-icon type="servicefill" size="20" color="#545454"></ui-icon>
+              </ui-col>
+              <ui-col class="text">
+                  运营商
+              </ui-col>
+              <ui-col width="25" vertical-align="middle">
+                  <ui-icon type="roundright"></ui-icon>
+              </ui-col>
+          </ui-row>
+      </ui-row-list>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+const tags_itme = `
+  border: 1px solid #f1f2f3;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 25px;
+  font-size:12px;
+`
+export default {
+  config: {
+    navigationBarTitleText: 'Touch-UI',
+    backgroundColor: '#F4F4F4',
+    navigationBarTextStyle: 'black',
+    enablePullDownRefresh: true,
+  },
+  data : {
+    NAV_HEIGHT:wx.STATUS_BAR_HEIGHT+wx.DEFAULT_HEADER_HEIGHT+'px',
+    STATUS_BAR_HEIGHT:wx.STATUS_BAR_HEIGHT,
+    url: 'https://wx.qlogo.cn/mmopen/vi_32/8IwVR1skSnqYas88FloN5DWoPDp3u8aAxpjyxZVOsmxsAnrg2KfLia4JsaNXYFeZttx4crZy83OUc9twl8oScpw/132',
+    items: [],
+    alpha: 0,
+    className: '',
+    starList: [{
+      text: '正能量',
+      tagStyle: tags_itme
+    }, {
+      text: '宅男',
+      tagStyle: tags_itme
+    }, {
+      text: '萝莉控',
+      tagStyle: tags_itme
+    }, {
+      text: '中央空调',
+      tagStyle: tags_itme
+    }]
+  },
+  navigateBack () {
+    wx.navigateBack()
+  },
+  onReady: function () {
+    let arr = []
+    for (let i = 1; i <= 5; i++) {
+      arr.push(`列表项目${i}`)
+    }
+    this.setData({
+      items: arr
+    })
+    console.log(this.data.items)
+  }
+
+}
+</script>
+
+<style lang="less">
+.content_wrap{
+  .top_content{
+    width: 100%;
+    // height: 100%;
+    position: absolute;
+    top:80px;
+    view{
+      .mix-flex-center();
+      color: #fff;
+      font-size: 16px;
+      image{
+        border-radius: 50%;
+        border: 2px solid #fff;
+      }
+      .ui-icon{
+        margin-left: 10px;
+      }
+      &.name{
+        padding: 20px 0;
+      }
+      .ui-view{
+        display: inline-block;
+        padding: 5px;
+        border-radius: 25px;
+        border: 1px solid #fff;
+      }
+      &.card{
+        .ui-view{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .content_list{
+    width: 100%;
+    line-height: 40px;
+    view{
+      padding-left: 10px;
+      background-color: #fff;
+      &.grey-bg{
+        background-color: #f5f5f5;
+      }
+    }
+  }
+  .user_list{
+    line-height: 50px;
+  }
+}
+
+.tag_list{
+  padding: 5px;
+}
+
+</style>

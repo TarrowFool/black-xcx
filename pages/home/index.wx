@@ -1,0 +1,175 @@
+<template>
+  <view>
+    <view class="swiper-container">
+        <swiper circular autoplay interval="5000" duration="500" bindchange="swiperChange" class="swiper">
+            <block wx:for="{{banner}}" wx:key="unique">
+                <swiper-item>
+                    <image src="{{item.src}}" class="img" />
+                </swiper-item>
+            </block>
+        </swiper>
+
+        <view class="dots">
+            <block wx:for="{{banner}}" wx:key="unique">
+                <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+            </block>
+        </view>
+    </view>
+    <view class="nav">
+        <ui-row  height="100" space-bottom="20">
+            <ui-col align="center" vertical-align="middle" bindtap="navto" data-url="/pages/girl/girl">
+                <ui-icon type="mudedi" size="40"></ui-icon>
+                <text class="model_title">妹子图</text>
+            </ui-col>
+            <ui-col align="center" vertical-align="middle" bindtap="navto" data-url="/pages/gaode/gaode">
+              <ui-icon type="jingdian" size="40"></ui-icon>
+              <text class="model_title">地图</text>
+            </ui-col>
+            <ui-col align="center" vertical-align="middle">
+              <ui-icon type="zhinengyouhua" size="40"></ui-icon>
+              <text class="model_title">模块一</text>
+            </ui-col>
+            <ui-col align="center" vertical-align="middle">
+              <ui-icon type="canyin" size="40"></ui-icon>
+              <text class="model_title">模块一</text>
+            </ui-col>
+        </ui-row>
+    </view>
+    <!-- <ui-tabs index="{{ current1 }}" bindchange="handleChange1">
+        <ui-tab>选项卡一</ui-tab>
+        <ui-tab>选项卡二</ui-tab>
+        <ui-tab>选项卡三</ui-tab>
+        <ui-tab>选项卡四</ui-tab>
+    </ui-tabs>
+    <swiper class="check_tag" current="{{ current1 }}"  bindchange="handleContentChange1">
+        <swiper-item>
+            <ui-row class="pad10"  height="100" space-bottom="10" space-top="30">
+                <ui-col align="center" vertical-align="middle" space="10">
+                  <view class="column-content" >内容</view>
+                </ui-col>
+                <ui-col  align="center" vertical-align="middle" space="10">
+                  <view class="column-content">内容</view>
+                </ui-col>
+            </ui-row>
+            <ui-row class="pad10"  height="100" space-bottom="10">
+                <ui-col align="center" vertical-align="middle" space="10">
+                  <view class="column-content" >内容</view>
+                </ui-col>
+                <ui-col  align="center" vertical-align="middle" space="10">
+                  <view class="column-content">内容</view>
+                </ui-col>
+            </ui-row>
+        </swiper-item>
+        <swiper-item>
+            
+        </swiper-item>
+        <swiper-item>
+            <view>
+              <ui-summary  height="65" animate="{{false}}" >
+                  <text>
+                      一对好基友孟云（韩庚 饰）和余飞（郑恺 饰）跟女友都因为一点小事宣告分手，并且“拒绝挽回，死不认错”。两人在夜店、派对与交友软件上放飞人生第二春，大肆庆祝“黄金单身期”，从而引发了一系列好笑的故事。孟云与女友同甘共苦却难逃“五年之痒”，余飞与女友则棋逢敌手相爱相杀无绝期。然而现实的“打脸”却来得猝不及防：一对推拉纠结零往来，一对纠缠互怼全交代。两对恋人都将面对最终的选择：是再次相见？还是再也不见？
+                  </text>
+              </ui-summary>
+            </view>
+        </swiper-item>
+        <swiper-item>
+            <ui-count-down class="countDown" time="2019/09/04 09:00:06"></ui-count-down>
+        </swiper-item>
+    </swiper> -->
+    
+  </view>
+</template>
+
+<script>
+import system from '../../static/utils/system'
+export default {
+  config: {
+    navigationBarTitleText: 'Touch-WX',
+    backgroundColor: '#F4F4F4',
+    navigationBarTextStyle: 'black'
+  },
+  data: {
+    isShow:false,
+    current1: 0,
+    banner:[{
+      src:'https://blackkong.cn/public/uploads/20181112/2a578103700f787333563b9316761f65.jpeg'
+    },{
+      src:'https://blackkong.cn/public/uploads/20181112/2a578103700f787333563b9316761f65.jpeg'
+    },{
+      src:'https://blackkong.cn/public/uploads/20181112/2a578103700f787333563b9316761f65.jpeg'
+    }],
+    swiperCurrent: 0
+    
+  },
+  swiperChange (e) {
+    let bac = e.detail.current
+    this.setData({
+        swiperCurrent:bac
+    })
+  },
+  starShow () {
+    this.setData({ 
+      isShow: true
+    })
+  },
+  handleContentChange1 (e) {
+      let current = e.detail.current
+      this.setData({
+        current1:current
+      })
+  },
+  handleChange1 (e) {
+      let index = e.detail.index
+      this.setData({
+        current1:index
+      })
+  },
+  navto (e) {
+    var url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url
+    })
+  }
+}
+</script>
+
+<style lang="less">
+.content{
+  .mix-flex-center();
+}
+.starContent{
+  padding:50px 50px 0px 50px;
+}
+.buttonContent{
+  padding:50px;
+}
+.index_bar{
+  justify-content: flex-start;
+}
+.index-hd{
+  text-align: center;
+  line-height: 50px;
+  color: #333;
+}
+.swiper-container .swiper{
+  height: 200px;
+}
+.check_tag{
+  height: 300px;
+}
+.countDown{
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+}
+.nav{
+  .ui-icon{
+    height: 40px;
+    margin-bottom: 10px;
+    color: #009688;
+  }
+  .model_title{
+    color: #009688;
+  }
+}
+</style>

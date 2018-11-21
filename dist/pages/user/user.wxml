@@ -1,0 +1,146 @@
+<view>
+  <view class="content_wrap">
+    <ui-blur height="300" url="{{ url }}" _pid="{{_pid}}">
+      <view class="top_content">
+        <view>
+          <image src="{{ url }}" mode="aspectFill" style="width:60px;height:60px" />
+        </view>
+        <view class="name">
+          TOUCH UI <span type="write" size="16" color="#fff" class="ui-icon icon-write" style="color: #fff;font-size: 16px;"></span>
+        </view>
+        <view class="card">
+          <view>
+            美好生活PASS卡
+          </view>
+        </view>
+      </view>
+    </ui-blur>
+    <view class="tag_list">
+      <ui-tags data="{{ starList }}" fixed-width="true" bindchange="multipleTap" item-width="75" _pid="{{_pid}}"></ui-tags>
+    </view>
+
+    <view class="user_list">
+      <view class="ui-row-list ui-row-list-border-indent" style="">
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="like" size="20" color="#545454" class="ui-icon icon-like" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              个人中心
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="crown" size="20" color="#545454" class="ui-icon icon-crown" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              Wi-Fi
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="locationfill" size="20" color="#545454" class="ui-icon icon-locationfill" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              蓝牙
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="footprint" size="20" color="#545454" class="ui-icon icon-footprint" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              蜂窝移动网络
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="recharge" size="20" color="#545454" class="ui-icon icon-recharge" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              个人热点
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="mark" size="20" color="#545454" class="ui-icon icon-mark" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              VPN
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+        <view class="ui-row" style="height:50px;">
+          <view class="ui-col ui-col-align-center align-center valign-middle" style="flex:0 0 40px;">
+            <view class="ui-col-content align-center valign-middle">
+              <span type="servicefill" size="20" color="#545454" class="ui-icon icon-servicefill" style="color: #545454;font-size: 20px;"></span>
+            </view>
+          </view>
+          <view class="text ui-col" style="">
+            <view class="ui-col-content">
+              运营商
+            </view>
+          </view>
+          <view class="ui-col valign-middle" style="flex:0 0 25px;">
+            <view class="ui-col-content valign-middle">
+              <span type="roundright" class="ui-icon icon-roundright" style="font-size: 16px;"></span>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

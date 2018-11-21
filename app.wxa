@@ -1,0 +1,57 @@
+<template>
+  <page></page>
+</template>
+
+<script>
+import system from './static/utils/system'
+export default {
+  config: {
+    usingComponents: {},
+    pages: ['pages/home/index', 'pages/user/login', 'pages/user/user','pages/girl/girl'],
+    window: {
+      backgroundTextStyle: 'dark',
+      backgroundColor: '#efefef',
+      navigationBarBackgroundColor: '#ffffff',
+      navigationBarTitleText: 'TouchUI',
+      navigationBarTextStyle: 'black',
+    },
+    networkTimeout: {
+      request: 10000
+    },
+    theme: {
+      'theme-color': '#009688'
+    },
+    tabBar: {
+      "color": "#7a7e83",
+      "selectedColor": "#009688",
+      "borderColor": "rgba(231, 231, 231, 0.6)",
+      "backgroundColor": "#fff",
+      "list": [
+        {
+          "pagePath": "pages/home/index",
+          "iconPath": "resource/img/home.png",
+          "selectedIconPath": "resource/img/home-active.png",
+          "text": "首页"
+        },
+        {
+          "pagePath": "pages/user/user",
+          "iconPath": "resource/img/people.png",
+          "selectedIconPath": "resource/img/people-active.png",
+          "text": "我的"
+        }
+      ]
+    }
+
+  },
+  globalData: {},
+  onLaunch() {
+    system.attachInfo()
+  },
+  onShow() {},
+  onHide() {}
+}
+</script>
+
+<style lang="less">
+@import './static/styles/index.less';
+</style>
